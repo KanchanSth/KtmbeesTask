@@ -6,7 +6,7 @@ import 'package:tasks2/Logic/state.dart';
 class MovieBloc extends Bloc<MovieEvent, MovieState> {
   Repository repository = Repository();
 
-  MovieBloc(this.repository) : super(InitialState()) {
+  MovieBloc() : super(InitialState()) {
     on<ButtonEvent>(
       (event, emit) async {
         emit(LoadingState());

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasks2/Screen/moviedetails.dart';
 import 'package:tasks2/Widget/customtext.dart';
 import 'package:tasks2/Widget/movieimage.dart';
 
@@ -14,6 +15,7 @@ class CustomColumn extends StatelessWidget {
   final FontWeight? fontWeight1;
   final Color? color1;
   final TextOverflow? overflow1;
+  final String? id;
   CustomColumn(
       {super.key,
       required this.imagePath,
@@ -26,7 +28,8 @@ class CustomColumn extends StatelessWidget {
       this.fontWeight1,
       this.overflow1,
       this.size1,
-      required this.text1});
+      required this.text1,
+      this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +38,9 @@ class CustomColumn extends StatelessWidget {
       children: [
         MovieWidget(
           imagePath: imagePath,
+        ),
+        SizedBox(
+          height: 10,
         ),
         CustomText(
             text: text,

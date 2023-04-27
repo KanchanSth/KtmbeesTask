@@ -5,6 +5,7 @@ import 'package:tasks2/Data/Repository/movierepo.dart';
 import 'package:tasks2/Logic/bloc.dart';
 import 'package:tasks2/Logic/event.dart';
 import 'package:tasks2/Logic/state.dart';
+import 'package:tasks2/Screen/moviedetails.dart';
 import 'package:tasks2/Widget/customcolumn.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,8 +16,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  MovieBloc bloc = MovieBloc();
+
   @override
   void initState() {
+    bloc.add(ButtonEvent());
     super.initState();
   }
 
@@ -26,16 +30,23 @@ class _HomePageState extends State<HomePage> {
     return RepositoryProvider(
       create: (context) => Repository(),
       child: BlocProvider(
-        create: ((context) => MovieBloc(context.read<Repository>())),
+        create: ((context) => bloc),
         child: Scaffold(
           backgroundColor: Colors.black87,
           appBar: AppBar(
             backgroundColor: Colors.black,
-            leading: IconButton(
-              icon: Image.asset(
-                'images/logo.jpeg',
+            leading: InkWell(
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  )),
+              child: IconButton(
+                icon: Image.asset(
+                  'images/logo.jpeg',
+                ),
+                onPressed: () {},
               ),
-              onPressed: () {},
             ),
             actions: [
               IconButton(
@@ -69,7 +80,11 @@ class _HomePageState extends State<HomePage> {
           body: BlocListener<MovieBloc, MovieState>(
             listener: (context, state) {
               if (state is LoadingState) {
-                const LinearProgressIndicator();
+                const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+                );
               }
 
               if (state is LoadedState) {
@@ -94,17 +109,26 @@ class _HomePageState extends State<HomePage> {
                             shrinkWrap: true,
                             itemCount: response.length,
                             itemBuilder: ((context, index) {
-                              return CustomColumn(
-                                imagePath:
-                                    "${response[index].mediumCoverImage}",
-                                text: "${response[index].title}",
-                                color: Colors.white,
-                                size: 20,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis,
-                                text1: "${response[index].year}",
-                                color1: Colors.white54,
-                                size1: 15,
+                              return InkWell(
+                                onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => MovieDetailsDisplay(
+                                        movieModel: response[index],
+                                      ),
+                                    )),
+                                child: CustomColumn(
+                                  imagePath:
+                                      "${response[index].mediumCoverImage}",
+                                  text: "${response[index].title}",
+                                  color: Colors.white,
+                                  size: 20,
+                                  fontWeight: FontWeight.bold,
+                                  overflow: TextOverflow.ellipsis,
+                                  text1: "${response[index].year}",
+                                  color1: Colors.white54,
+                                  size1: 15,
+                                ),
                               );
                             }),
                             gridDelegate:
@@ -116,19 +140,19 @@ class _HomePageState extends State<HomePage> {
                             ),
                           )
                         : SizedBox(),
-                    BlocBuilder<MovieBloc, MovieState>(
-                        builder: (context, state) {
-                      return ElevatedButton(
-                          onPressed: () {
-                            BlocProvider.of<MovieBloc>(context)
-                                .add(ButtonEvent());
-                          },
-                          child: Column(
-                            children: [
-                              Text("Press to get value"),
-                            ],
-                          ));
-                    })
+                    // BlocBuilder<MovieBloc, MovieState>(
+                    //     builder: (context, state) {
+                    //   return ElevatedButton(
+                    //       onPressed: () {
+                    //         BlocProvider.of<MovieBloc>(context)
+                    //             .add(ButtonEvent());
+                    //       },
+                    //       child: Column(
+                    //         children: const [
+                    //           Text("Press to get value"),
+                    //         ],
+                    //       ));
+                    // })
                   ],
                 ),
               ),
