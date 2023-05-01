@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:tasks2/Data/Model/moviemodel.dart';
-import 'package:tasks2/Data/Repository/movierepo.dart';
-import 'package:tasks2/Screen/homepage.dart';
-import 'package:tasks2/Widget/customcolumn.dart';
-import 'package:tasks2/Widget/customtext.dart';
+import 'package:tasks2/MovieApi/Data/Model/moviemodel.dart';
+import 'package:tasks2/MovieApi/Data/Repository/movierepo.dart';
+import 'package:tasks2/MovieApi/Screen/homepage.dart';
+import 'package:tasks2/MovieApi/Widget/customcolumn.dart';
+import 'package:tasks2/MovieApi/Widget/customtext.dart';
 
 class MovieDetailsDisplay extends StatefulWidget {
   MovieModel movieModel;

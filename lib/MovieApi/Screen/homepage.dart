@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasks2/Data/Model/moviemodel.dart';
-import 'package:tasks2/Data/Repository/movierepo.dart';
-import 'package:tasks2/Logic/bloc.dart';
-import 'package:tasks2/Logic/event.dart';
-import 'package:tasks2/Logic/state.dart';
-import 'package:tasks2/Screen/moviedetails.dart';
-import 'package:tasks2/Widget/customcolumn.dart';
+import 'package:tasks2/MovieApi/Data/Model/moviemodel.dart';
+import 'package:tasks2/MovieApi/Data/Repository/movierepo.dart';
+import 'package:tasks2/MovieApi/Logic/bloc.dart';
+import 'package:tasks2/MovieApi/Logic/event.dart';
+import 'package:tasks2/MovieApi/Logic/state.dart';
+import 'package:tasks2/MovieApi/Screen/moviedetails.dart';
+import 'package:tasks2/MovieApi/Widget/customcolumn.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -80,11 +80,11 @@ class _HomePageState extends State<HomePage> {
           body: BlocListener<MovieBloc, MovieState>(
             listener: (context, state) {
               if (state is LoadingState) {
-                const Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.white,
-                  ),
-                );
+                // const Center(
+                //   child: CircularProgressIndicator(
+                //     color: Colors.white,
+                //   ),
+                // );
               }
 
               if (state is LoadedState) {
@@ -100,9 +100,10 @@ class _HomePageState extends State<HomePage> {
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(right: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
+                child:
+                    // Column(
+                    //   crossAxisAlignment: CrossAxisAlignment.center,
+                    //   children: [
                     response != null
                         ? GridView.builder(
                             physics: const NeverScrollableScrollPhysics(),
@@ -139,22 +140,29 @@ class _HomePageState extends State<HomePage> {
                               crossAxisSpacing: 10,
                             ),
                           )
-                        : SizedBox(),
-                    // BlocBuilder<MovieBloc, MovieState>(
-                    //     builder: (context, state) {
-                    //   return ElevatedButton(
-                    //       onPressed: () {
-                    //         BlocProvider.of<MovieBloc>(context)
-                    //             .add(ButtonEvent());
-                    //       },
-                    //       child: Column(
-                    //         children: const [
-                    //           Text("Press to get value"),
-                    //         ],
-                    //       ));
-                    // })
-                  ],
-                ),
+                        : const Padding(
+                            padding: EdgeInsets.only(top: 100),
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                color: Color.fromARGB(137, 8, 249, 3),
+                              ),
+                            ),
+                          ),
+                // BlocBuilder<MovieBloc, MovieState>(
+                //     builder: (context, state) {
+                //   return ElevatedButton(
+                //       onPressed: () {
+                //         BlocProvider.of<MovieBloc>(context)
+                //             .add(ButtonEvent());
+                //       },
+                //       child: Column(
+                //         children: const [
+                //           Text("Press to get value"),
+                //         ],
+                //       ));
+                // })
+                //   ],
+                // ),
               ),
             ),
           ),

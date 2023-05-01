@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tasks2/Screen/homepage.dart';
+import 'package:tasks2/MovieApi/Screen/homepage.dart';
+import 'package:tasks2/ToDoList/Screen/todoui.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const ToDoUI(),
     );
   }
 }

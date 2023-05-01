@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tasks2/Screen/moviedetails.dart';
-import 'package:tasks2/Widget/customtext.dart';
-import 'package:tasks2/Widget/movieimage.dart';
+import 'package:tasks2/MovieApi/Screen/moviedetails.dart';
+import 'package:tasks2/MovieApi/Widget/customtext.dart';
+import 'package:tasks2/MovieApi/Widget/movieimage.dart';
 
 class CustomColumn extends StatelessWidget {
   String imagePath;

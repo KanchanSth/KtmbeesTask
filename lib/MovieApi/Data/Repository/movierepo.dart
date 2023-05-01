@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:tasks2/Data/Model/moviemodel.dart';
+import 'package:tasks2/MovieApi/Data/Model/moviemodel.dart';
 
 class Repository {
   Dio dio = Dio();
