@@ -22,7 +22,14 @@ class _ToDoUIState extends State<ToDoUI> {
         children: [
           ListView(
             shrinkWrap: true,
-            children: [for (ToDo todo in todoList) Items(toDo: todo)],
+            children: [
+              for (ToDo todo in todoList)
+                Items(
+                  toDo: todo,
+                  onChange: handleChanges,
+                  onDelete: () {},
+                )
+            ],
           ),
         ],
       ),
@@ -31,5 +38,11 @@ class _ToDoUIState extends State<ToDoUI> {
         child: Icon(Icons.add),
       ),
     );
+  }
+
+  void handleChanges(ToDo toDo) {
+    setState(() {
+      toDo.isChecked = !toDo.isChecked;
+    });
   }
 }
